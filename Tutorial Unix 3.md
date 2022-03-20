@@ -83,7 +83,47 @@ charlie$ echo $date
 charlie$ echo \$date
 $date
 ```
+> Single Quotes
+```
+单引号会保留其文字的值，加上转义符escape character就会消除特殊含义
+```
+
+> Double Quotes
+
+```
+1 charlie$ echo "$date"
+2 14062009
+3 charlie$ echo "\$date"
+4 $date
+5 charlie$ echo "\ $date"
+6 \ 14062009
+7 charlie$ echo "it's \"easy\""
+8 it's "easy"
+9 charlie$ echo "`date`"
+10 Sun Jun 14 08:36:37 EST 2009
+
+我们仍然可以使用日期变量（第2行）。
+当“\”后跟“$”符号（第3行）时，它将保留其特殊含义（第4行）。
+反斜杠后跟空格或任何其他缺乏特殊含义的字符（第5行）将产生文字反斜杠字符（第6行）。
+双引号中间的一个引号（第7行）将由shell逐字读取（第8行）。
+双引号（第9行）之间的反勾（`）将导致命令外壳展开，并执行日期命令（第10行）。
+```
+
+### 6.Arithmetic Expansion算术展开
+> $(( expression ))
+```
+1 charlie$ echo $(( 5 - 2 ))
+2 3
+3 charlie$ echo “$date”
+4 14062009
+5 charlie$ echo $(( $date - 2 ))
+6 14062007
+7 charlie$ echo $((( $date - 2 ) * 3))
+8 42186021
+```
 
 
 
-### 6.Arithmetic Expansion
+
+
+
